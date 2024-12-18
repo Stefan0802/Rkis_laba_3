@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Выход</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Вход</a></li>
+        {% endif %}
+        <!-- Другие ссылки -->
+    </ul>
+</nav>
