@@ -1,0 +1,37 @@
+    <a href="{% url 'post_list' %}">Посты</a>
+    <a href="{% url 'profile' %}">профиль</a>
+    <a href="{% url 'home' %}">главная</a>
+{% if user_profile %}
+    <h2>Профиль: {{ user_profile.user.username }} </h2>
+    <p>Полное имя: {{ user_profile.full_name }}</p>
+
+    {% if user_profile.birth_date %}
+        <p>Дата рождения: {{ user_profile.birth_date }}</p>
+    {% else %}
+        <p>Дата не указана</p>
+    {% endif %}
+
+    {% if user_profile.avatar %}
+        <img src="{{ user_profile.avatar.url }}" alt="Изображение профиля" style="width: 100px; height: 100px; "/> <br>
+    {% else %}
+        <p>Картинка нет)</p>
+    {% endif %}
+
+    <a href="{% url 'edit_profile' %}">Хотите отредактировать профиль?</a>
+
+    <h3>Ваши посты:</h3>
+    {% if user_posts %}
+        <ul>
+            {% for post in user_posts %}
+                <li>
+                    <h4><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h4>
+                    <p>Дата: <em>{{ post.created_at }}</em></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас пока нет постов.</p>
+    {% endif %}
+{% else %}
+    <p>Гость</p>
+{% endif %}

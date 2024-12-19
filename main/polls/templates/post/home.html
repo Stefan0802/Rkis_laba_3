@@ -1,4 +1,8 @@
+{% load static %}
 <nav>
+    <a href="{% url 'post_list' %}">Посты</a>
+    <a href="{% url 'profile' %}">профиль</a>
+    <a href="{% url 'home' %}">главная</a>
     <ul>
         {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Выход</a></li>

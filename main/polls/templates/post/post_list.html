@@ -1,0 +1,24 @@
+<!-- templates/post/post_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post List</title>
+</head>
+<body>
+    <a href="{% url 'post_list' %}">Посты</a>
+    <a href="{% url 'profile' %}">профиль</a>
+    <a href="{% url 'home' %}">главная</a>
+    <h1>Posts</h1>
+    <a href="{% url 'create_post' %}">Create New Post</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                <p>By {{ post.author.username }} | Likes: {{ post.likes.count }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

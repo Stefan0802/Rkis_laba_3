@@ -1,0 +1,18 @@
+    <a href="{% url 'post_list' %}">Посты</a>
+    <a href="{% url 'profile' %}">профиль</a>
+    <a href="{% url 'home' %}">главная</a>
+<h1>Edit Post</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ post.title }}" required><br>
+
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" required>{{ post.content }}</textarea><br>
+
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image"><br>
+
+    <button type="submit">Save Changes</button>
+</form>
+<a href="{% url 'post_detail' post.id %}">Cancel</a>
